@@ -45,33 +45,35 @@ class StudentDetailFragment : Fragment() {
 
     fun observeViewModel() {
         viewModel.studentLD.observe(viewLifecycleOwner, Observer {
-            var student = it
-
-            binding.btnUpdate.setOnClickListener {
-                Observable.timer(5, TimeUnit.SECONDS)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe {
-                        Log.d("Messages", "Five seconds")
-                        MainActivity.showNotification(
-                            student.name.toString(),
-                            "A new notification created",
-                            R.drawable.baseline_person_24
-                        )
-                    }
-            }
-
-            if (it == null) {
-            }
-            else {
-                binding.txtID.setText(it.id)
-                binding.txtName.setText(it.name)
-                binding.txtBOD.setText(it.dob)
-                binding.txtPhone.setText(it.phone)
-                val picasso = Picasso.Builder(binding.root.context)
-                picasso.listener { picasso, uri, exception -> exception.printStackTrace()}
-                picasso.build().load(it.photoUrl).into(binding.imgStudent)
-            }
+            binding.student = it
+//            var student = it
+//
+//            binding.btnUpdate.setOnClickListener {
+//                Observable.timer(5, TimeUnit.SECONDS)
+//                    .subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe {
+//                        Log.d("Messages", "Five seconds")
+//                        MainActivity.showNotification(
+//                            student.name.toString(),
+//                            "A new notification created",
+//                            R.drawable.baseline_person_24
+//                        )
+//                    }
+//            }
+//
+//            if (it == null) {
+//            }
+//            else {
+//                binding.txtID.setText(it.id)
+//                binding.txtName.setText(it.name)
+//                binding.txtBOD.setText(it.dob)
+//                binding.txtPhone.setText(it.phone)
+//                val picasso = Picasso.Builder(binding.root.context)
+//                picasso.listener { picasso, uri, exception -> exception.printStackTrace()}
+//                picasso.build().load(it.photoUrl).into(binding.imgStudent)
+//            }
         })
     }
+
 }
